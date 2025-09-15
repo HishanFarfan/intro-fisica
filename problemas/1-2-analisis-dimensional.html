@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1.2 · Análisis dimensional — Introducción a la Física</title>
+
+  <!-- usa el CSS general del proyecto intro-fisica -->
+  <link rel="stylesheet" href="../style.css" />
+
+  <!-- MathJax para fórmulas -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>1.2 · Análisis dimensional</h1>
+    <nav class="site-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="../example.html">Ejemplo</a>
+    </nav>
+    <button id="toggle-dark" aria-pressed="false" aria-label="Cambiar modo oscuro">🌙 Modo oscuro</button>
+  </header>
+
+  <main>
+    <!-- ===== Materia ===== -->
+    <section>
+      <h2>Objetivos de aprendizaje</h2>
+      <ul>
+        <li>Definir <strong>dimensión</strong> y reconocer cantidades físicas básicas.</li>
+        <li>Usar dimensiones para <strong>verificar consistencia</strong> de ecuaciones.</li>
+        <li>Usar dimensiones para <strong>inferir relaciones</strong> entre cantidades físicas.</li>
+      </ul>
+        <p class="note">
+        Adaptado de la estrategia general de resolución de problemas discutida en clase.<sup><a href="#ref-1">[1]</a></sup>
+        </p>
+
+        <!-- Al final del <main>, antes del botón “Volver” o en una sección “Referencias”: -->
+        <section id="referencias">
+        <h3>Referencias</h3>
+        <ol>
+            <li id="ref-1">
+            Clase 2 — Estándares de unidades y análisis dimensional (PDF).
+            <!-- Si lo vas a subir a tu repo, enlaza el archivo real: -->
+            <!-- <a href="../material/Clase-2-DAFI191-C1-2s2025.pdf">Descargar</a> -->
+            </li>
+        </ol>
+        </section>
+
+
+    </section>
+
+    <section>
+      <h2>¿Qué es una dimensión?</h2>
+      <p>
+        La <strong>dimensión</strong> caracteriza la naturaleza de una cantidad física. En mecánica clásica, las
+        fundamentales son:
+      </p>
+      <ul>
+        <li>Longitud \([L]\)</li>
+        <li>Masa \([M]\)</li>
+        <li>Tiempo \([T]\)</li>
+      </ul>
+      <p>
+        Ejemplos típicos:
+      </p>
+      <ul>
+        <li>Velocidad: \([v] = L\,T^{-1}\)</li>
+        <li>Aceleración: \([a] = L\,T^{-2}\)</li>
+        <li>Área: \([A] = L^{2}\)</li>
+      </ul>
+      <p class="note">Estos ejemplos reflejan los que se discuten en la presentación. :contentReference[oaicite:2]{index=2}</p>
+    </section>
+
+    <section>
+      <h2>¿Para qué sirve el análisis dimensional?</h2>
+      <ol>
+        <li><strong>Chequeo de consistencia:</strong> en toda ecuación física, el lado izquierdo y el derecho deben tener las <em>mismas dimensiones</em>.</li>
+        <li><strong>Estimaciones/relaciones:</strong> permite deducir la forma funcional (exponentes) entre cantidades, cuando se conocen las variables relevantes, sin resolver toda la física.</li>
+      </ol>
+      <p class="note">Usos principales mencionados en la clase. :contentReference[oaicite:3]{index=3}</p>
+    </section>
+
+    <!-- ===== Esquema de ejemplos (para completar) ===== -->
+    <section>
+      <h2>Ejemplos guiados (plantilla)</h2>
+
+      <!-- EJEMPLO A -->
+      <details>
+        <summary>A) Consistencia dimensional: ecuación de caída con aceleración constante</summary>
+        <p><strong>Propuesta (a verificar):</strong> \( x = x_0 + v_0 t + \tfrac12 a t^2 \).</p>
+        <ol>
+          <li><strong>Dimensiones:</strong> \( [x] = L,\ [x_0]=L,\ [v_0]=L\,T^{-1},\ [t]=T,\ [a]=L\,T^{-2} \).</li>
+          <li><strong>Chequeo término a término:</strong> \( [v_0 t] = L,\ [a t^2] = L \).</li>
+          <li><strong>Conclusión:</strong> todos los términos son \(L\) ⇒ <em>consistente</em>.</li>
+        </ol>
+        <p class="todo">✍️ Añade una variante incorrecta (por ej., \(x=x_0+v_0 t + \tfrac12 a t\)) y explica por qué falla.</p>
+      </details>
+
+      <!-- EJEMPLO B -->
+      <details>
+        <summary>B) Deducción dimensional: período de un péndulo simple</summary>
+        <p>Supón que el período \(T\) depende de la longitud \(L\), la masa \(m\) y la gravedad \(g\).</p>
+        <ol>
+          <li><strong>Hipótesis:</strong> \( T \propto L^{\alpha} m^{\beta} g^{\gamma} \).</li>
+          <li><strong>Dimensiones:</strong> \( [T]=T;\ [L]=L;\ [m]=M;\ [g]=L\,T^{-2} \).</li>
+          <li><strong>Sistema de ecuaciones:</strong> iguala potencias de \(L, M, T\) para hallar \(\alpha,\beta,\gamma\).</li>
+          <li><strong>Resultado esperado:</strong> \( T \propto \sqrt{L/g} \) y no depende de \(m\) (para oscilaciones pequeñas).</li>
+        </ol>
+        <p class="todo">✍️ Escribe la resolución con los exponentes y discute el límite de ángulos pequeños.</p>
+      </details>
+
+      <!-- EJEMPLO C -->
+      <details>
+        <summary>C) Velocidad terminal (aire): estima la dependencia</summary>
+        <p>Variables relevantes (modelo simple): \(v_t,\, m,\, g,\, \rho\) (densidad del fluido), \(A\) (área frontal), \(C_d\) (adimensional).</p>
+        <ol>
+          <li><strong>Planteo:</strong> \( v_t \propto m^{\alpha} g^{\beta} \rho^{\gamma} A^{\delta} \).</li>
+          <li><strong>Dimensiones:</strong> \( [v_t]=L\,T^{-1},\ [m]=M,\ [g]=L\,T^{-2},\ [\rho]=M\,L^{-3},\ [A]=L^2 \).</li>
+          <li><strong>Ecuaciones:</strong> iguala potencias en \(M,L,T\) para obtener \(\alpha,\beta,\gamma,\delta\).</li>
+          <li><strong>Discusión:</strong> compara con la expresión clásica \(v_t \sim \sqrt{\tfrac{2 m g}{\rho C_d A}}\).</li>
+        </ol>
+        <p class="todo">✍️ Completa el sistema y comenta límites (objetos livianos/pesados, aire denso/rarefacto).</p>
+      </details>
+
+      <!-- EJEMPLO D -->
+      <details>
+        <summary>D) Energía cinética: chequeo y unidades</summary>
+        <p>Propuesta: \( K = \tfrac12 m v^2 \).</p>
+        <ul>
+          <li>\([m]=M,\ [v]=L\,T^{-1} \Rightarrow [K]=M\,L^{2}\,T^{-2}\) (Joule).</li>
+          <li><strong>Consistencia:</strong> compara con trabajo \(W = F \cdot d\) (\([F]=M\,L\,T^{-2}\), \([d]=L\)).</li>
+        </ul>
+        <p class="todo">✍️ Agrega un ejemplo numérico con unidades SI y chequeo de cifras significativas.</p>
+      </details>
+
+      <!-- PLANTILLA GENERAL -->
+      <details>
+        <summary>📄 Plantilla para nuevos problemas</summary>
+        <ol>
+          <li><strong>Variables y suposiciones:</strong> lista variables relevantes y constantes.</li>
+          <li><strong>Forma dimensional:</strong> \( Q \propto \prod_i X_i^{\alpha_i} \).</li>
+          <li><strong>Tabla de dimensiones:</strong> completa \([Q], [X_i]\).</li>
+          <li><strong>Igualación de potencias:</strong> sistema lineal en \(\alpha_i\).</li>
+          <li><strong>Solución y discusión:</strong> dependencia final, límites físicos, comparación con fórmulas conocidas.</li>
+        </ol>
+      </details>
+    </section>
+
+    <section>
+      <h2>Consejos de resolución</h2>
+      <ul>
+        <li>Trabaja con **símbolos** primero; numera y define variables.</li>
+        <li>Comprueba **unidades** en cada paso; evita mezclar sistemas.</li>
+        <li>Haz **diagramas** cuando ayuden a entender el proceso.</li>
+        <li>Verifica **significado físico** y **orden de magnitud** del resultado.</li>
+      </ul>
+      <p class="note">Adaptado de la estrategia general de resolución de problemas que se discute en la clase. :contentReference[oaicite:4]{index=4}</p>
+    </section>
+
+    <p>
+      <a class="btn-link" href="../index.html">⬅️ Volver al índice</a>
+    </p>
+  </main>
+
+  <footer>
+    <small>© 2025 Tu Nombre — Material docente para uso educativo</small>
+  </footer>
+
+  <!-- usa el JS general (toggle tema) del proyecto intro-fisica -->
+  <script src="../script.js" defer></script>
+</body>
+</html>
