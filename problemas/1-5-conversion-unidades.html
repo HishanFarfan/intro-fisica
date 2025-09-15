@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conversión de unidades y órdenes de magnitud — Introducción a la Física</title>
+
+  <!-- CSS general del proyecto intro-fisica -->
+  <link rel="stylesheet" href="../style.css" />
+
+  <!-- MathJax para fórmulas -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Conversión de unidades y órdenes de magnitud</h1>
+    <nav class="site-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="../example.html">Ejemplo</a>
+    </nav>
+    <button id="toggle-dark" aria-pressed="false" aria-label="Cambiar modo oscuro">🌙 Modo oscuro</button>
+  </header>
+
+  <main>
+    <!-- ===== Objetivos ===== -->
+    <section>
+      <h2>Objetivos de aprendizaje</h2>
+      <ul>
+        <li>Convertir cantidades físicas de un sistema de unidades a otro usando factores de conversión. :contentReference[oaicite:1]{index=1}</li>
+        <li>Realizar estimaciones y cálculos de <em>orden de magnitud</em> con suposiciones razonables. :contentReference[oaicite:2]{index=2}</li>
+      </ul>
+      <p class="note">
+        Resumen basado en la Clase 5 del curso. :contentReference[oaicite:3]{index=3}
+      </p>
+    </section>
+
+    <!-- ===== Conversión de unidades ===== -->
+    <section>
+      <h2>Conversión de unidades</h2>
+      <p>
+        Idea clave: trata las unidades como <strong>factores algebraicos</strong> que se pueden multiplicar y cancelar.
+        Construye fracciones de conversión equivalentes a 1 (por ejemplo, \( \tfrac{1\,\text{pulg}}{2.54\,\text{cm}} = 1 \))
+        y encadénalas hasta obtener la unidad deseada. :contentReference[oaicite:4]{index=4}
+      </p>
+
+      <h3>Factores frecuentes (longitud)</h3>
+      <ul>
+        <li>\(1\,\text{mi} = 1609\,\text{m} = 1.609\,\text{km}\)</li>
+        <li>\(1\,\text{pie} = 0.3048\,\text{m} = 30.48\,\text{cm}\)</li>
+        <li>\(1\,\text{m} = 39.37\,\text{pulg} \approx 3.281\,\text{pies}\)</li>
+        <li>\(1\,\text{pulg} = 0.0254\,\text{m} = 2.54\,\text{cm}\)</li>
+      </ul>
+      <p class="note">Tomados de la tabla de conversión de la clase. :contentReference[oaicite:5]{index=5}</p>
+
+      <!-- Ejemplos con details -->
+      <details>
+        <summary>Ejemplo 1 · Pulgas a centímetros</summary>
+        <p>Convierte \(15.0\,\text{pulg}\) a cm.</p>
+        <p>
+          \[
+            15.0\,\text{pulg}\times \frac{2.54\,\text{cm}}{1\,\text{pulg}} = 38.1\,\text{cm}
+          \]
+        </p>
+        <p><em>Notas:</em> Se cancela “pulg” y el resultado se expresa en “cm”. Mantén las cifras significativas (3 en 15.0 → 3 en 38.1).</p>
+        <p class="note">Ejemplo análogo al mostrado en las diapositivas. :contentReference[oaicite:6]{index=6}</p>
+      </details>
+
+      <details>
+        <summary>Ejemplo 2 · Encadenar conversiones</summary>
+        <p>Convierte \(5.0\,\text{mi}\) a metros y luego a centímetros.</p>
+        <p>
+          \[
+            5.0\,\text{mi}\times \frac{1609\,\text{m}}{1\,\text{mi}} = 8045\,\text{m}
+            \quad\Rightarrow\quad
+            8045\,\text{m}\times \frac{100\,\text{cm}}{1\,\text{m}} = 8.045\times 10^{5}\,\text{cm}
+          \]
+        </p>
+        <p><em>Tip:</em> para potencias y áreas/volúmenes, aplica el factor a la potencia correspondiente (por ejemplo, \(1\,\text{ft}^2 = (30.48\,\text{cm})^2\)).</p>
+      </details>
+
+      <details>
+        <summary>Ejemplo 3 · Potencias de unidades</summary>
+        <p>Convierte \(2.0\,\text{ft}^2\) a \(\text{cm}^2\).</p>
+        <p>
+          \[
+            2.0\,\text{ft}^2 \times \left(\frac{30.48\,\text{cm}}{1\,\text{ft}}\right)^2
+            = 2.0 \times (30.48)^2\,\text{cm}^2 \approx 1.86\times 10^{3}\,\text{cm}^2
+          \]
+        </p>
+        <p>Observa que el factor se <em>eleva al cuadrado</em> porque se trata de un área.</p>
+      </details>
+    </section>
+
+    <!-- ===== Órdenes de magnitud ===== -->
+    <section>
+      <h2>Estimaciones y órdenes de magnitud</h2>
+      <p>
+        Una <strong>estimación de orden de magnitud</strong> es un valor aproximado dentro de un factor 10 del valor real;
+        se expresa con la potencia de 10 más cercana (por ejemplo, \(75\,\text{kg} \sim 10^2\,\text{kg}\)). :contentReference[oaicite:7]{index=7}
+      </p>
+      <ul>
+        <li>Útil para verificar resultados y detectar incoherencias grandes. :contentReference[oaicite:8]{index=8}</li>
+        <li>Se aceptan aproximaciones simples: \( \pi\!\sim\!3,\ 27\!\sim\!30,\ 6.5\!\sim\!7 \). :contentReference[oaicite:9]{index=9}</li>
+        <li>Incrementar un orden de magnitud ≈ multiplicar por 10. :contentReference[oaicite:10]{index=10}</li>
+      </ul>
+
+      <details>
+        <summary>Ejemplo 4 · Estimar el número de hojas en un cuaderno</summary>
+        <p>Supón espesor por hoja ~ \(0.1\,\text{mm}\) y grosor total \(1.5\,\text{cm}\).</p>
+        <p>
+          \[
+            N \approx \frac{1.5\,\text{cm}}{0.01\,\text{cm}} = 150 \ \text{hojas} \sim 10^2
+          \]
+        </p>
+        <p>Conclusión de orden de magnitud: \(N \sim 10^2\).</p>
+      </details>
+
+      <details>
+        <summary>Ejemplo 5 · Chequeo rápido de un resultado</summary>
+        <p>Si un cálculo de consumo energético domiciliario te da \(10^{12}\,\text{kWh}\) al mes, ¿es razonable?</p>
+        <p>Comparando con órdenes típicos (kWh/mes por hogar), ese resultado es <em>varios órdenes de magnitud</em> más grande → probablemente hay un error en unidades o en datos.</p>
+      </details>
+
+      <p class="note">
+        “Las estimaciones son una herramienta para pensar en órdenes de magnitud, no para obtener exactitud.” :contentReference[oaicite:11]{index=11}
+      </p>
+    </section>
+
+    <!-- ===== Problemas propuestos ===== -->
+    <section>
+      <h2>Problemas propuestos (plantilla)</h2>
+
+      <details>
+        <summary>1) Conversión encadenada</summary>
+        <p class="todo">✍️ Convierte \(3.40\,\text{mi}\) a \(\text{m}\), \(\text{cm}\) y \(\text{mm}\). Indica el número de cifras significativas en cada paso.</p>
+      </details>
+
+      <details>
+        <summary>2) Superficie y volumen</summary>
+        <p class="todo">✍️ Convierte \(1.25\,\text{ft}^2\) a \(\text{m}^2\) y \(0.020\,\text{m}^3\) a \(\text{ft}^3\). Recuerda elevar los factores.</p>
+      </details>
+
+      <details>
+        <summary>3) Orden de magnitud (Fermi)</summary>
+        <p class="todo">✍️ Estima cuántas gotas hay en una botella de \(500\,\text{mL}\) si una gota ~ \(0.05\,\text{mL}\). Expresa el resultado como potencia de 10.</p>
+      </details>
+
+      <details>
+        <summary>4) Detección de error por orden de magnitud</summary>
+        <p class="todo">✍️ Un alumno obtiene \(3\times 10^{9}\,\text{cm}\) para la altura de un edificio. ¿Qué paso podría estar mal? Rehaz el cálculo con unidades correctas.</p>
+      </details>
+    </section>
+
+    <p>
+      <a class="btn-link" href="../index.html">⬅️ Volver al índice</a>
+    </p>
+  </main>
+
+  <footer>
+    <small>
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">
+        <img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="Licencia Creative Commons BY-SA 4.0">
+      </a>
+      2025 — Tu Nombre
+    </small>
+  </footer>
+
+  <!-- JS general (toggle tema) -->
+  <script src="../script.js" defer></script>
+</body>
+</html>
