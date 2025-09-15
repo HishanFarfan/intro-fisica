@@ -1,0 +1,128 @@
+:root {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  color: #1a1a1a;
+  background: #f8fafc;
+}
+
+/* ===== HEADER ===== */
+header {
+  padding: 2rem 1rem;
+  text-align: center;
+  background: linear-gradient(180deg, #eef2ff, #ffffff);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+h1 { margin: 0 0 .5rem; }
+
+/* ===== MAIN ===== */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Hover en títulos */
+h2:hover {
+  color: #3730a3;
+  transition: color 0.3s ease;
+}
+
+/* Enlaces */
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #666;
+  background: #f1f5f9;
+  font-size: 0.85rem;
+}
+
+/* ===== NAV ===== */
+.site-nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.site-nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #2563eb;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.site-nav a:hover { background: #2563eb; color: #fff; }
+
+/* ===== BOTÓN modo oscuro ===== */
+#toggle-dark {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#toggle-dark:hover { background: #1e40af; }
+
+/* ===== DETAILS (problemas paso a paso) ===== */
+details {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin: 0.75rem 0;
+  padding: 0.75rem 0.9rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+}
+details[open] { background: #fafafa; border-color: #d1d5db; }
+summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+summary::before {
+  content: "▸";
+  display: inline-block;
+  transform: translateY(-1px);
+  transition: transform .2s ease;
+  opacity: .7;
+}
+details[open] summary::before { transform: rotate(90deg) translateY(-1px); opacity: 1; }
+details > *:not(summary) { margin-top: .6rem; }
+
+/* ===== MODO OSCURO ===== */
+.dark-mode { background: #1a1a1a; color: #f8fafc; }
+.dark-mode header { background: #111827; color: #f9fafb; }
+.dark-mode footer { background: #111827; color: #d1d5db; }
+.dark-mode details { background: #1f2937; border-color: #374151; }
+.dark-mode details[open] { background: #111827; border-color: #374151; }
+.dark-mode summary { color: #e5e7eb; }
+
+.note {
+  font-size: .95rem;
+  color: #475569;
+  background: #f1f5f9;
+  border-left: 3px solid #94a3b8;
+  padding: .5rem .75rem;
+  border-radius: 6px;
+  margin: .75rem 0;
+}
+.dark-mode .note {
+  color: #cbd5e1;
+  background: #0f172a;
+  border-left-color: #64748b;
+}
+#referencias ol { padding-left: 1.2rem; }
+#referencias a { text-decoration: underline; }

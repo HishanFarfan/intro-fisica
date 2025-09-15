@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ejemplo de problemas paso a paso</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- MathJax para fórmulas -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Ejemplo de problemas de Física I</h1>
+    <nav class="site-nav">
+      <a href="index.html">Inicio</a>
+      <a href="example.html">Ejemplo</a>
+    </nav>
+    <button id="toggle-dark">🌙 Modo oscuro</button>
+  </header>
+
+  <main>
+    <!-- Problema 1: MRUA -->
+    <section>
+      <h2>Problema 1 · MRUA</h2>
+      <p>
+        Un móvil parte del reposo y acelera a razón constante de \( a = 2\,\text{m/s}^2 \).
+        ¿Qué velocidad tiene a los \( t = 5\,\text{s} \) y qué distancia recorre?
+      </p>
+
+      <details>
+        <summary>1) Datos y ecuaciones</summary>
+        <ul>
+          <li>Condiciones iniciales: \( v_0 = 0 \), \( x_0 = 0 \).</li>
+          <li>Ecuaciones de MRUA:
+            \[
+              v(t) = v_0 + a t, \quad x(t) = x_0 + v_0 t + \tfrac12 a t^2
+            \]
+          </li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>2) Cálculo de la velocidad</summary>
+        <p>\( v(5) = 0 + (2)(5) = 10\,\text{m/s} \)</p>
+      </details>
+
+      <details>
+        <summary>3) Cálculo de la distancia</summary>
+        <p>\( x(5) = 0 + 0 \cdot 5 + \tfrac12 (2)(5)^2 = 25\,\text{m} \)</p>
+      </details>
+
+      <details>
+        <summary>4) Respuesta</summary>
+        <p>Velocidad: \( 10\,\text{m/s} \). Distancia recorrida: \( 25\,\text{m} \).</p>
+      </details>
+    </section>
+
+    <!-- Problema 2: 2ª ley de Newton -->
+    <section>
+      <h2>Problema 2 · Fuerza neta y aceleración</h2>
+      <p>
+        Una masa de \( m = 4\,\text{kg} \) es empujada con \( F = 18\,\text{N} \) sobre una superficie sin roce.
+        Hallar la aceleración y la velocidad tras \( t = 3\,\text{s} \) si parte del reposo.
+      </p>
+
+      <details>
+        <summary>1) Segunda ley</summary>
+        <p>\( a = \tfrac{F}{m} = \tfrac{18}{4} = 4.5\,\text{m/s}^2 \)</p>
+      </details>
+
+      <details>
+        <summary>2) Velocidad</summary>
+        <p>\( v(3) = v_0 + a t = 0 + (4.5)(3) = 13.5\,\text{m/s} \)</p>
+      </details>
+
+      <details>
+        <summary>3) Respuesta</summary>
+        <p>Aceleración: \( 4.5\,\text{m/s}^2 \). Velocidad: \( 13.5\,\text{m/s} \).</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <small>© 2025 Tu Nombre</small>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
