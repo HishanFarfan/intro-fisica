@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>1.2 · Análisis dimensional — Introducción a la Física</title>
+  <meta name="description" content="Resumen y ejercicios guiados sobre analisis dimensional para fisica introductoria.">
+  <meta name="theme-color" content="#2563eb">
 
   <!-- usa el CSS general del proyecto intro-fisica -->
   <link rel="stylesheet" href="../style.css" />
@@ -36,23 +38,10 @@
         <li>Usar dimensiones para <strong>verificar consistencia</strong> de ecuaciones.</li>
         <li>Usar dimensiones para <strong>inferir relaciones</strong> entre cantidades físicas.</li>
       </ul>
-        <p class="note">
-        Adaptado de la estrategia general de resolución de problemas discutida en clase.<sup><a href="#ref-1">[1]</a></sup>
-        </p>
-
-        <!-- Al final del <main>, antes del botón “Volver” o en una sección “Referencias”: -->
-        <section id="referencias">
-        <h3>Referencias</h3>
-        <ol>
-            <li id="ref-1">
-            Clase 2 — Estándares de unidades y análisis dimensional (PDF).
-            <!-- Si lo vas a subir a tu repo, enlaza el archivo real: -->
-            <!-- <a href="../material/Clase-2-DAFI191-C1-2s2025.pdf">Descargar</a> -->
-            </li>
-        </ol>
-        </section>
-
-
+      <p class="note">
+        Usa estas ideas como una lista de control: identifica magnitudes, escribe sus dimensiones y verifica que
+        cada expresion tenga sentido antes de reemplazar numeros.
+      </p>
     </section>
 
     <section>
@@ -74,7 +63,7 @@
         <li>Aceleración: \([a] = L\,T^{-2}\)</li>
         <li>Área: \([A] = L^{2}\)</li>
       </ul>
-      <p class="note">Estos ejemplos reflejan los que se discuten en la presentación. :contentReference[oaicite:2]{index=2}</p>
+      <p class="note">En mecanica introductoria, casi todos los chequeos dimensionales se apoyan en estas tres magnitudes fundamentales.</p>
     </section>
 
     <section>
@@ -83,7 +72,7 @@
         <li><strong>Chequeo de consistencia:</strong> en toda ecuación física, el lado izquierdo y el derecho deben tener las <em>mismas dimensiones</em>.</li>
         <li><strong>Estimaciones/relaciones:</strong> permite deducir la forma funcional (exponentes) entre cantidades, cuando se conocen las variables relevantes, sin resolver toda la física.</li>
       </ol>
-      <p class="note">Usos principales mencionados en la clase. :contentReference[oaicite:3]{index=3}</p>
+      <p class="note">Un resultado numerico puede verse razonable y aun asi estar mal si la dimension final no coincide con la magnitud buscada.</p>
     </section>
 
     <!-- ===== Esquema de ejemplos (para completar) ===== -->
@@ -99,7 +88,10 @@
           <li><strong>Chequeo término a término:</strong> \( [v_0 t] = L,\ [a t^2] = L \).</li>
           <li><strong>Conclusión:</strong> todos los términos son \(L\) ⇒ <em>consistente</em>.</li>
         </ol>
-        <p class="todo">✍️ Añade una variante incorrecta (por ej., \(x=x_0+v_0 t + \tfrac12 a t\)) y explica por qué falla.</p>
+        <p>
+          Si alguien propusiera \(x = x_0 + v_0 t + \tfrac12 a t\), el ultimo termino tendria dimension
+          \(L\,T^{-1}\) y ya no podria sumarse con cantidades de tipo \(L\). La ecuacion quedaria invalidada de inmediato.
+        </p>
       </details>
 
       <!-- EJEMPLO B -->
@@ -112,7 +104,16 @@
           <li><strong>Sistema de ecuaciones:</strong> iguala potencias de \(L, M, T\) para hallar \(\alpha,\beta,\gamma\).</li>
           <li><strong>Resultado esperado:</strong> \( T \propto \sqrt{L/g} \) y no depende de \(m\) (para oscilaciones pequeñas).</li>
         </ol>
-        <p class="todo">✍️ Escribe la resolución con los exponentes y discute el límite de ángulos pequeños.</p>
+        <p>
+          Escribiendo dimensiones:
+          \[
+            T = L^{\alpha}(M)^{\beta}(L\,T^{-2})^{\gamma}
+            = M^{\beta}L^{\alpha+\gamma}T^{-2\gamma}
+          \]
+          Al comparar exponentes se obtiene \(\beta = 0\), \(-2\gamma = 1\) y \(\alpha + \gamma = 0\).
+          Por tanto, \(\gamma = -\tfrac12\) y \(\alpha = \tfrac12\), de donde
+          \(T \propto L^{1/2} g^{-1/2} = \sqrt{L/g}\).
+        </p>
       </details>
 
       <!-- EJEMPLO C -->
@@ -125,7 +126,15 @@
           <li><strong>Ecuaciones:</strong> iguala potencias en \(M,L,T\) para obtener \(\alpha,\beta,\gamma,\delta\).</li>
           <li><strong>Discusión:</strong> compara con la expresión clásica \(v_t \sim \sqrt{\tfrac{2 m g}{\rho C_d A}}\).</li>
         </ol>
-        <p class="todo">✍️ Completa el sistema y comenta límites (objetos livianos/pesados, aire denso/rarefacto).</p>
+        <p>
+          Una eleccion consistente es \(\alpha = \tfrac12\), \(\beta = \tfrac12\), \(\gamma = -\tfrac12\) y
+          \(\delta = -\tfrac12\), con lo que
+          \[
+            v_t \propto \sqrt{\frac{mg}{\rho A}}
+          \]
+          Esto coincide con la dependencia conocida: aumenta con la masa y la gravedad, y disminuye cuando el fluido es
+          mas denso o el area frontal es mayor.
+        </p>
       </details>
 
       <!-- EJEMPLO D -->
@@ -136,7 +145,13 @@
           <li>\([m]=M,\ [v]=L\,T^{-1} \Rightarrow [K]=M\,L^{2}\,T^{-2}\) (Joule).</li>
           <li><strong>Consistencia:</strong> compara con trabajo \(W = F \cdot d\) (\([F]=M\,L\,T^{-2}\), \([d]=L\)).</li>
         </ul>
-        <p class="todo">✍️ Agrega un ejemplo numérico con unidades SI y chequeo de cifras significativas.</p>
+        <p>
+          Si \(m = 2.0\,\text{kg}\) y \(v = 3.5\,\text{m/s}\), entonces
+          \[
+            K = \tfrac12 (2.0)(3.5)^2 = 12.25\,\text{J}
+          \]
+          Redondeando a dos cifras significativas, \(K \approx 12\,\text{J}\).
+        </p>
       </details>
 
       <!-- PLANTILLA GENERAL -->
@@ -155,12 +170,20 @@
     <section>
       <h2>Consejos de resolución</h2>
       <ul>
-        <li>Trabaja con **símbolos** primero; numera y define variables.</li>
-        <li>Comprueba **unidades** en cada paso; evita mezclar sistemas.</li>
-        <li>Haz **diagramas** cuando ayuden a entender el proceso.</li>
-        <li>Verifica **significado físico** y **orden de magnitud** del resultado.</li>
+        <li>Trabaja con <strong>simbolos</strong> primero; numera y define variables.</li>
+        <li>Comprueba <strong>unidades</strong> en cada paso; evita mezclar sistemas.</li>
+        <li>Haz <strong>diagramas</strong> cuando ayuden a entender el proceso.</li>
+        <li>Verifica <strong>significado fisico</strong> y <strong>orden de magnitud</strong> del resultado.</li>
       </ul>
-      <p class="note">Adaptado de la estrategia general de resolución de problemas que se discute en la clase. :contentReference[oaicite:4]{index=4}</p>
+      <p class="note">Un buen analisis dimensional no reemplaza a la fisica del problema, pero suele detectar errores antes de que se propaguen.</p>
+    </section>
+
+    <section id="referencias">
+      <h2>Referencias sugeridas</h2>
+      <ol>
+        <li>Apuntes del curso sobre unidades, dimensiones y estrategias de resolucion.</li>
+        <li>Cualquier texto de mecanica introductoria que presente analisis dimensional y chequeo de ecuaciones.</li>
+      </ol>
     </section>
 
     <p>

@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conversión de unidades y órdenes de magnitud — Introducción a la Física</title>
+  <meta name="description" content="Conversion de unidades, factores de conversion y ejercicios de ordenes de magnitud.">
+  <meta name="theme-color" content="#2563eb">
 
   <!-- CSS general del proyecto intro-fisica -->
   <link rel="stylesheet" href="../style.css" />
@@ -32,11 +34,11 @@
     <section>
       <h2>Objetivos de aprendizaje</h2>
       <ul>
-        <li>Convertir cantidades físicas de un sistema de unidades a otro usando factores de conversión. :contentReference[oaicite:1]{index=1}</li>
-        <li>Realizar estimaciones y cálculos de <em>orden de magnitud</em> con suposiciones razonables. :contentReference[oaicite:2]{index=2}</li>
+        <li>Convertir cantidades fisicas de un sistema de unidades a otro usando factores de conversion.</li>
+        <li>Realizar estimaciones y calculos de <em>orden de magnitud</em> con suposiciones razonables.</li>
       </ul>
       <p class="note">
-        Resumen basado en la Clase 5 del curso. :contentReference[oaicite:3]{index=3}
+        Este resumen combina conversion de unidades con chequeos de razonabilidad mediante ordenes de magnitud.
       </p>
     </section>
 
@@ -46,7 +48,7 @@
       <p>
         Idea clave: trata las unidades como <strong>factores algebraicos</strong> que se pueden multiplicar y cancelar.
         Construye fracciones de conversión equivalentes a 1 (por ejemplo, \( \tfrac{1\,\text{pulg}}{2.54\,\text{cm}} = 1 \))
-        y encadénalas hasta obtener la unidad deseada. :contentReference[oaicite:4]{index=4}
+        y encadenalas hasta obtener la unidad deseada.
       </p>
 
       <h3>Factores frecuentes (longitud)</h3>
@@ -56,11 +58,11 @@
         <li>\(1\,\text{m} = 39.37\,\text{pulg} \approx 3.281\,\text{pies}\)</li>
         <li>\(1\,\text{pulg} = 0.0254\,\text{m} = 2.54\,\text{cm}\)</li>
       </ul>
-      <p class="note">Tomados de la tabla de conversión de la clase. :contentReference[oaicite:5]{index=5}</p>
+      <p class="note">Conviene memorizar solo unos pocos factores base y derivar el resto a partir de ellos.</p>
 
       <!-- Ejemplos con details -->
       <details>
-        <summary>Ejemplo 1 · Pulgas a centímetros</summary>
+        <summary>Ejemplo 1 · Pulgadas a centímetros</summary>
         <p>Convierte \(15.0\,\text{pulg}\) a cm.</p>
         <p>
           \[
@@ -68,7 +70,7 @@
           \]
         </p>
         <p><em>Notas:</em> Se cancela “pulg” y el resultado se expresa en “cm”. Mantén las cifras significativas (3 en 15.0 → 3 en 38.1).</p>
-        <p class="note">Ejemplo análogo al mostrado en las diapositivas. :contentReference[oaicite:6]{index=6}</p>
+        <p class="note">Cuando el factor de conversion es exacto, las cifras significativas las determina la medicion original.</p>
       </details>
 
       <details>
@@ -102,12 +104,12 @@
       <h2>Estimaciones y órdenes de magnitud</h2>
       <p>
         Una <strong>estimación de orden de magnitud</strong> es un valor aproximado dentro de un factor 10 del valor real;
-        se expresa con la potencia de 10 más cercana (por ejemplo, \(75\,\text{kg} \sim 10^2\,\text{kg}\)). :contentReference[oaicite:7]{index=7}
+        se expresa con la potencia de 10 mas cercana (por ejemplo, \(75\,\text{kg} \sim 10^2\,\text{kg}\)).
       </p>
       <ul>
-        <li>Útil para verificar resultados y detectar incoherencias grandes. :contentReference[oaicite:8]{index=8}</li>
-        <li>Se aceptan aproximaciones simples: \( \pi\!\sim\!3,\ 27\!\sim\!30,\ 6.5\!\sim\!7 \). :contentReference[oaicite:9]{index=9}</li>
-        <li>Incrementar un orden de magnitud ≈ multiplicar por 10. :contentReference[oaicite:10]{index=10}</li>
+        <li>Es util para verificar resultados y detectar incoherencias grandes.</li>
+        <li>Se aceptan aproximaciones simples: \( \pi\!\sim\!3,\ 27\!\sim\!30,\ 6.5\!\sim\!7 \).</li>
+        <li>Incrementar un orden de magnitud equivale, aproximadamente, a multiplicar por 10.</li>
       </ul>
 
       <details>
@@ -128,7 +130,7 @@
       </details>
 
       <p class="note">
-        “Las estimaciones son una herramienta para pensar en órdenes de magnitud, no para obtener exactitud.” :contentReference[oaicite:11]{index=11}
+        Las estimaciones son una herramienta para pensar en escalas fisicas y revisar si un resultado merece confianza.
       </p>
     </section>
 
@@ -138,22 +140,48 @@
 
       <details>
         <summary>1) Conversión encadenada</summary>
-        <p class="todo">✍️ Convierte \(3.40\,\text{mi}\) a \(\text{m}\), \(\text{cm}\) y \(\text{mm}\). Indica el número de cifras significativas en cada paso.</p>
+        <p>Convierte \(3.40\,\text{mi}\) a \(\text{m}\), \(\text{cm}\) y \(\text{mm}\).</p>
+        <p>
+          \[
+            3.40\,\text{mi} \times \frac{1609\,\text{m}}{1\,\text{mi}} = 5470.6\,\text{m}
+          \]
+          Con 3 cifras significativas: \(5.47 \times 10^3\,\text{m}\), \(5.47 \times 10^5\,\text{cm}\) y \(5.47 \times 10^6\,\text{mm}\).
+        </p>
       </details>
 
       <details>
         <summary>2) Superficie y volumen</summary>
-        <p class="todo">✍️ Convierte \(1.25\,\text{ft}^2\) a \(\text{m}^2\) y \(0.020\,\text{m}^3\) a \(\text{ft}^3\). Recuerda elevar los factores.</p>
+        <p>Convierte \(1.25\,\text{ft}^2\) a \(\text{m}^2\) y \(0.020\,\text{m}^3\) a \(\text{ft}^3\).</p>
+        <p>
+          \[
+            1.25\,\text{ft}^2 \times \left(\frac{0.3048\,\text{m}}{1\,\text{ft}}\right)^2 \approx 0.116\,\text{m}^2
+          \]
+          y
+          \[
+            0.020\,\text{m}^3 \times \left(\frac{3.281\,\text{ft}}{1\,\text{m}}\right)^3 \approx 0.71\,\text{ft}^3
+          \]
+        </p>
       </details>
 
       <details>
         <summary>3) Orden de magnitud (Fermi)</summary>
-        <p class="todo">✍️ Estima cuántas gotas hay en una botella de \(500\,\text{mL}\) si una gota ~ \(0.05\,\text{mL}\). Expresa el resultado como potencia de 10.</p>
+        <p>Estima cuantas gotas hay en una botella de \(500\,\text{mL}\) si una gota ocupa \(0.05\,\text{mL}\).</p>
+        <p>
+          \[
+            N \approx \frac{500}{0.05} = 10\,000
+          \]
+          El valor es del orden de \(10^4\) gotas.
+        </p>
       </details>
 
       <details>
         <summary>4) Detección de error por orden de magnitud</summary>
-        <p class="todo">✍️ Un alumno obtiene \(3\times 10^{9}\,\text{cm}\) para la altura de un edificio. ¿Qué paso podría estar mal? Rehaz el cálculo con unidades correctas.</p>
+        <p>Un alumno obtiene \(3\times 10^{9}\,\text{cm}\) para la altura de un edificio. Revisa la razonabilidad del resultado.</p>
+        <p>
+          Ese valor corresponde a \(3\times 10^7\,\text{m}\), es decir, decenas de miles de kilometros.
+          Para un edificio comun, el orden correcto esta entre \(10^1\) y \(10^2\,\text{m}\). Casi seguro hubo un error
+          al convertir metros a centimetros o al mover la potencia de diez.
+        </p>
       </details>
     </section>
 
@@ -167,7 +195,7 @@
       <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="license noopener noreferrer">
         <img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="Licencia Creative Commons BY-SA 4.0">
       </a>
-      2025 — Tu Nombre
+      2025 — Hishan Farfán
     </small>
   </footer>
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hishanfarfan.github.io/intro-fisica/sitemap.xml
