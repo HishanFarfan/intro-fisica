@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1.1 · Estandares y unidades — Introduccion a la Fisica</title>
+  <meta name="description" content="Resumen introductorio sobre estandares, unidades del SI y prefijos metricos con una actividad interactiva.">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="stylesheet" href="../style.css" />
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>1.1 · Estandares y unidades</h1>
+    <nav class="site-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="../example.html">Ejemplo</a>
+    </nav>
+    <button id="toggle-dark" aria-pressed="false" aria-label="Cambiar modo oscuro">🌙 Modo oscuro</button>
+  </header>
+
+  <main>
+    <section>
+      <h2>Idea central</h2>
+      <p>
+        La fisica necesita mediciones comparables. Para eso se usan <strong>estandares</strong> y un sistema comun
+        de <strong>unidades</strong> que permita expresar longitudes, masas, tiempos y otras magnitudes sin ambiguedad.
+      </p>
+      <ul>
+        <li>Un estandar define de manera reproducible como medir una magnitud.</li>
+        <li>Una unidad es la referencia concreta con la que comparamos una medicion.</li>
+        <li>El Sistema Internacional (SI) organiza las unidades base y sus prefijos.</li>
+      </ul>
+      <p class="note">
+        En la practica, dominar prefijos como mili, micro, kilo o mega evita errores de conversion y de orden de magnitud.
+      </p>
+    </section>
+
+    <section>
+      <h2>Unidades base frecuentes</h2>
+      <ul>
+        <li>Longitud: metro (m)</li>
+        <li>Masa: kilogramo (kg)</li>
+        <li>Tiempo: segundo (s)</li>
+        <li>Temperatura: kelvin (K)</li>
+        <li>Corriente electrica: ampere (A)</li>
+      </ul>
+      <p>
+        A partir de estas unidades se construyen otras magnitudes derivadas, por ejemplo velocidad \((\text{m/s})\),
+        aceleracion \((\text{m/s}^2)\) o fuerza \((\text{kg·m/s}^2)\).
+      </p>
+    </section>
+
+    <section>
+      <h2>Prefijos metricos utiles</h2>
+      <p>
+        Los prefijos SI permiten escribir cantidades muy grandes o muy pequenas sin llenar el resultado de ceros.
+        Por ejemplo, \(1\,\text{km} = 10^3\,\text{m}\) y \(1\,\text{mm} = 10^{-3}\,\text{m}\).
+      </p>
+      <div class="game-panel">
+        <div class="game-topbar">
+          <div class="game-score">
+            Aciertos: <span id="matches">0</span> / <span id="total">0</span> |
+            Intentos: <span id="attempts">0</span>
+          </div>
+          <div class="game-buttons">
+            <button class="control-button" id="restartBtn" type="button">Reiniciar ronda</button>
+            <button class="control-button" id="shuffleBtn" type="button">Nueva seleccion</button>
+          </div>
+        </div>
+
+        <div class="matching-game">
+          <div class="game-column">
+            <h3>Prefijo</h3>
+            <div class="game-list" id="leftList"></div>
+          </div>
+          <div class="game-column">
+            <h3>Factor</h3>
+            <div class="game-list" id="rightList"></div>
+          </div>
+        </div>
+
+        <p class="game-message" id="message" aria-live="polite"></p>
+      </div>
+      <p class="note">
+        En cada partida aparecen 5 prefijos elegidos al azar. Empareja cada nombre con su potencia de diez.
+      </p>
+    </section>
+
+    <section>
+      <h2>Chequeos rapidos</h2>
+      <details>
+        <summary>Ejemplo 1 · Conversion sencilla</summary>
+        <p>
+          \(3.2\,\text{km} = 3.2 \times 10^3\,\text{m} = 3200\,\text{m}\).
+        </p>
+      </details>
+      <details>
+        <summary>Ejemplo 2 · Escala pequena</summary>
+        <p>
+          \(250\,\mu\text{m} = 250 \times 10^{-6}\,\text{m} = 2.5 \times 10^{-4}\,\text{m}\).
+        </p>
+      </details>
+      <details>
+        <summary>Ejemplo 3 · Orden de magnitud</summary>
+        <p>
+          Un error comun es confundir <em>mili</em> \((10^{-3})\) con <em>micro</em> \((10^{-6})\). La diferencia es un factor de \(10^3\).
+        </p>
+      </details>
+    </section>
+
+    <p>
+      <a class="btn-link" href="../index.html">⬅️ Volver al indice</a>
+    </p>
+  </main>
+
+  <footer>
+    <small>Contenido bajo licencia Creative Commons CC-BY-SA 4.0 — 2025 Hishan Farfán</small>
+  </footer>
+
+  <script src="../script.js" defer></script>
+  <script>
+    const allPairs = [
+      { left: "yocto", right: "10⁻²⁴" },
+      { left: "zepto", right: "10⁻²¹" },
+      { left: "atto", right: "10⁻¹⁸" },
+      { left: "femto", right: "10⁻¹⁵" },
+      { left: "pico", right: "10⁻¹²" },
+      { left: "nano", right: "10⁻⁹" },
+      { left: "micro", right: "10⁻⁶" },
+      { left: "mili", right: "10⁻³" },
+      { left: "centi", right: "10⁻²" },
+      { left: "deci", right: "10⁻¹" },
+      { left: "deca", right: "10¹" },
+      { left: "hecto", right: "10²" },
+      { left: "kilo", right: "10³" },
+      { left: "mega", right: "10⁶" },
+      { left: "giga", right: "10⁹" },
+      { left: "tera", right: "10¹²" },
+      { left: "peta", right: "10¹⁵" },
+      { left: "exa", right: "10¹⁸" },
+      { left: "zetta", right: "10²¹" },
+      { left: "yotta", right: "10²⁴" }
+    ];
+
+    const PAIRS_PER_GAME = 5;
+    const leftList = document.getElementById("leftList");
+    const rightList = document.getElementById("rightList");
+    const message = document.getElementById("message");
+    const matchesSpan = document.getElementById("matches");
+    const attemptsSpan = document.getElementById("attempts");
+    const totalSpan = document.getElementById("total");
+    const restartBtn = document.getElementById("restartBtn");
+    const shuffleBtn = document.getElementById("shuffleBtn");
+
+    let currentPairs = [];
+    let selectedLeft = null;
+    let selectedRight = null;
+    let attempts = 0;
+    let matches = 0;
+    let locked = false;
+
+    function shuffle(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function pickRandomPairs() {
+      return shuffle(allPairs).slice(0, PAIRS_PER_GAME);
+    }
+
+    function createItem(text, side) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "match-item";
+      button.textContent = text;
+      button.dataset.value = text;
+      button.dataset.side = side;
+      button.dataset.matched = "false";
+      button.addEventListener("click", () => handleSelect(button));
+      return button;
+    }
+
+    function renderGame() {
+      leftList.innerHTML = "";
+      rightList.innerHTML = "";
+      setMessage("");
+
+      shuffle(currentPairs.map((pair) => pair.left)).forEach((item) => {
+        leftList.appendChild(createItem(item, "left"));
+      });
+
+      shuffle(currentPairs.map((pair) => pair.right)).forEach((item) => {
+        rightList.appendChild(createItem(item, "right"));
+      });
+
+      totalSpan.textContent = String(currentPairs.length);
+    }
+
+    function setMessage(text, type = "") {
+      message.textContent = text;
+      message.className = "game-message";
+      if (type) {
+        message.classList.add(type);
+      }
+    }
+
+    function clearSelection() {
+      document.querySelectorAll(".match-item.selected").forEach((item) => {
+        item.classList.remove("selected");
+      });
+      selectedLeft = null;
+      selectedRight = null;
+    }
+
+    function clearTemporaryStyles() {
+      document.querySelectorAll(".match-item.wrong").forEach((item) => {
+        item.classList.remove("wrong");
+      });
+    }
+
+    function isCorrectPair(leftValue, rightValue) {
+      return currentPairs.some((pair) => pair.left === leftValue && pair.right === rightValue);
+    }
+
+    function markCorrect(leftEl, rightEl) {
+      leftEl.classList.remove("selected");
+      rightEl.classList.remove("selected");
+      leftEl.classList.add("correct");
+      rightEl.classList.add("correct");
+      leftEl.dataset.matched = "true";
+      rightEl.dataset.matched = "true";
+    }
+
+    function handleSelect(element) {
+      if (locked || element.dataset.matched === "true") {
+        return;
+      }
+
+      clearTemporaryStyles();
+
+      if (element.dataset.side === "left") {
+        if (selectedLeft === element) {
+          element.classList.remove("selected");
+          selectedLeft = null;
+          return;
+        }
+        if (selectedLeft) {
+          selectedLeft.classList.remove("selected");
+        }
+        selectedLeft = element;
+        selectedLeft.classList.add("selected");
+      }
+
+      if (element.dataset.side === "right") {
+        if (selectedRight === element) {
+          element.classList.remove("selected");
+          selectedRight = null;
+          return;
+        }
+        if (selectedRight) {
+          selectedRight.classList.remove("selected");
+        }
+        selectedRight = element;
+        selectedRight.classList.add("selected");
+      }
+
+      if (!(selectedLeft && selectedRight)) {
+        return;
+      }
+
+      attempts += 1;
+      attemptsSpan.textContent = String(attempts);
+
+      if (isCorrectPair(selectedLeft.dataset.value, selectedRight.dataset.value)) {
+        markCorrect(selectedLeft, selectedRight);
+        matches += 1;
+        matchesSpan.textContent = String(matches);
+        setMessage("Correcto.", "ok");
+        clearSelection();
+
+        if (matches === currentPairs.length) {
+          setMessage(`Completaste la ronda en ${attempts} intentos.`, "win");
+        }
+        return;
+      }
+
+      locked = true;
+      selectedLeft.classList.add("wrong");
+      selectedRight.classList.add("wrong");
+      setMessage("No corresponde. Intenta otra vez.", "error");
+
+      setTimeout(() => {
+        clearSelection();
+        clearTemporaryStyles();
+        locked = false;
+      }, 800);
+    }
+
+    function resetStats() {
+      selectedLeft = null;
+      selectedRight = null;
+      attempts = 0;
+      matches = 0;
+      locked = false;
+      attemptsSpan.textContent = "0";
+      matchesSpan.textContent = "0";
+      setMessage("");
+    }
+
+    function newSelection() {
+      currentPairs = pickRandomPairs();
+      resetStats();
+      renderGame();
+    }
+
+    function restartSameSelection() {
+      resetStats();
+      renderGame();
+    }
+
+    restartBtn.addEventListener("click", restartSameSelection);
+    shuffleBtn.addEventListener("click", newSelection);
+
+    newSelection();
+  </script>
+</body>
+</html>

@@ -15,6 +15,7 @@ El objetivo del proyecto es publicar material de apoyo para clases introductoria
 
 Actualmente hay contenido publicado para:
 
+- Estandares y unidades
 - Analisis dimensional
 - Cifras significativas
 - Conversion de unidades y ordenes de magnitud
