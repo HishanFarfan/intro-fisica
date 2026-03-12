@@ -190,6 +190,9 @@ footer {
 
 .matching-game {
   position: relative;
+}
+
+.matching-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
@@ -199,8 +202,6 @@ footer {
 .solution-overlay {
   position: absolute;
   inset: 0;
-  grid-column: 1 / -1;
-  grid-row: 1;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -218,16 +219,6 @@ footer {
   text-align: center;
   position: relative;
   z-index: 1;
-}
-
-.game-column:first-of-type {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.game-column:last-of-type {
-  grid-column: 2;
-  grid-row: 1;
 }
 
 .game-list {
@@ -444,20 +435,7 @@ details > *:not(summary) { margin-top: .6rem; }
     flex-direction: column;
   }
 
-  .matching-game {
+  .matching-columns {
     grid-template-columns: 1fr;
-  }
-
-  .game-column:first-of-type,
-  .game-column:last-of-type {
-    grid-column: 1;
-  }
-
-  .game-column:first-of-type {
-    grid-row: 1;
-  }
-
-  .game-column:last-of-type {
-    grid-row: 2;
   }
 }
