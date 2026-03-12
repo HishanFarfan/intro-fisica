@@ -9,3 +9,7 @@ Desktop.ini
 
 # Python local server cache
 __pycache__/
+
+# Local agent/testing artifacts
+output/
+progress.md

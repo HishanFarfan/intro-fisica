@@ -72,10 +72,12 @@
           <div class="game-buttons">
             <button class="control-button" id="restartBtn" type="button">Reiniciar ronda</button>
             <button class="control-button" id="shuffleBtn" type="button">Nueva seleccion</button>
+            <button class="control-button" id="solutionBtn" type="button" aria-pressed="false">Mostrar solucion</button>
           </div>
         </div>
 
-        <div class="matching-game">
+        <div class="matching-game" id="matchingBoard">
+          <svg class="solution-overlay" id="solutionOverlay" aria-hidden="true"></svg>
           <div class="game-column">
             <h3>Prefijo</h3>
             <div class="game-list" id="leftList"></div>
@@ -158,6 +160,18 @@
     const totalSpan = document.getElementById("total");
     const restartBtn = document.getElementById("restartBtn");
     const shuffleBtn = document.getElementById("shuffleBtn");
+    const solutionBtn = document.getElementById("solutionBtn");
+    const matchingBoard = document.getElementById("matchingBoard");
+    const solutionOverlay = document.getElementById("solutionOverlay");
+
+    const solutionPalette = [
+      "#ef4444",
+      "#f59e0b",
+      "#10b981",
+      "#3b82f6",
+      "#8b5cf6",
+      "#ec4899"
+    ];
 
     let currentPairs = [];
     let selectedLeft = null;
@@ -165,6 +179,8 @@
     let attempts = 0;
     let matches = 0;
     let locked = false;
+    let solutionVisible = false;
+    let matchedPairs = [];
 
     function shuffle(array) {
       const copy = [...array];
@@ -205,6 +221,9 @@
       });
 
       totalSpan.textContent = String(currentPairs.length);
+      requestAnimationFrame(() => {
+        updateSolutionDisplay();
+      });
     }
 
     function setMessage(text, type = "") {
@@ -229,17 +248,144 @@
       });
     }
 
+    function clearSolutionView() {
+      solutionVisible = false;
+      document.querySelectorAll(".match-item.solution-highlight").forEach((item) => {
+        item.classList.remove("solution-highlight");
+        item.style.removeProperty("--solution-color");
+      });
+      document.querySelectorAll(".match-item.correct").forEach((item) => {
+        const pair = currentPairs.find(
+          (candidate) =>
+            candidate.left === item.dataset.value || candidate.right === item.dataset.value
+        );
+        if (pair) {
+          item.style.setProperty("--solution-color", getPairColor(pair));
+        }
+      });
+      solutionBtn.textContent = "Mostrar solucion";
+      solutionBtn.setAttribute("aria-pressed", "false");
+      drawSolutionCurves(matchedPairs);
+    }
+
+    function getItem(side, value) {
+      return [...document.querySelectorAll(`.match-item[data-side="${side}"]`)].find(
+        (item) => item.dataset.value === value
+      );
+    }
+
+    function getPairColor(pair) {
+      const index = currentPairs.findIndex(
+        (candidate) => candidate.left === pair.left && candidate.right === pair.right
+      );
+      return solutionPalette[(index >= 0 ? index : 0) % solutionPalette.length];
+    }
+
+    function applySolutionHighlights() {
+      currentPairs.forEach((pair, index) => {
+        const color = solutionPalette[index % solutionPalette.length];
+        const leftItem = getItem("left", pair.left);
+        const rightItem = getItem("right", pair.right);
+        if (!leftItem || !rightItem) {
+          return;
+        }
+        leftItem.classList.add("solution-highlight");
+        rightItem.classList.add("solution-highlight");
+        leftItem.style.setProperty("--solution-color", color);
+        rightItem.style.setProperty("--solution-color", color);
+      });
+    }
+
+    function drawSolutionCurves(pairs) {
+      solutionOverlay.innerHTML = "";
+      const boardRect = matchingBoard.getBoundingClientRect();
+      const width = Math.ceil(boardRect.width);
+      const height = Math.ceil(boardRect.height);
+      solutionOverlay.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+      pairs.forEach((pair, index) => {
+        const leftItem = getItem("left", pair.left);
+        const rightItem = getItem("right", pair.right);
+        if (!leftItem || !rightItem) {
+          return;
+        }
+
+        const leftRect = leftItem.getBoundingClientRect();
+        const rightRect = rightItem.getBoundingClientRect();
+        const x1 = leftRect.right - boardRect.left;
+        const y1 = leftRect.top - boardRect.top + leftRect.height / 2;
+        const x2 = rightRect.left - boardRect.left;
+        const y2 = rightRect.top - boardRect.top + rightRect.height / 2;
+        const dx = Math.max(50, (x2 - x1) * 0.45);
+        const color = getPairColor(pair);
+
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`);
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke", color);
+        path.setAttribute("stroke-width", "5");
+        path.setAttribute("stroke-linecap", "round");
+        path.setAttribute("opacity", "0.78");
+
+        solutionOverlay.appendChild(path);
+      });
+
+      solutionOverlay.classList.toggle("visible", pairs.length > 0);
+    }
+
+    function updateSolutionDisplay() {
+      if (solutionVisible) {
+        applySolutionHighlights();
+        drawSolutionCurves(currentPairs);
+        return;
+      }
+
+      document.querySelectorAll(".match-item.solution-highlight").forEach((item) => {
+        if (!item.classList.contains("correct")) {
+          item.classList.remove("solution-highlight");
+          item.style.removeProperty("--solution-color");
+        }
+      });
+      drawSolutionCurves(matchedPairs);
+    }
+
+    function showSolution() {
+      solutionVisible = true;
+      solutionBtn.textContent = "Ocultar solucion";
+      solutionBtn.setAttribute("aria-pressed", "true");
+      updateSolutionDisplay();
+    }
+
+    function toggleSolution() {
+      if (solutionVisible) {
+        clearSolutionView();
+        return;
+      }
+      showSolution();
+    }
+
     function isCorrectPair(leftValue, rightValue) {
       return currentPairs.some((pair) => pair.left === leftValue && pair.right === rightValue);
     }
 
     function markCorrect(leftEl, rightEl) {
+      const pair = currentPairs.find(
+        (candidate) =>
+          candidate.left === leftEl.dataset.value && candidate.right === rightEl.dataset.value
+      );
+      const color = pair ? getPairColor(pair) : solutionPalette[0];
       leftEl.classList.remove("selected");
       rightEl.classList.remove("selected");
+      leftEl.style.setProperty("--solution-color", color);
+      rightEl.style.setProperty("--solution-color", color);
       leftEl.classList.add("correct");
       rightEl.classList.add("correct");
       leftEl.dataset.matched = "true";
       rightEl.dataset.matched = "true";
+      if (pair && !matchedPairs.some((candidate) => candidate.left === pair.left && candidate.right === pair.right)) {
+        matchedPairs.push(pair);
+      }
+      updateSolutionDisplay();
     }
 
     function handleSelect(element) {
@@ -313,9 +459,11 @@
       attempts = 0;
       matches = 0;
       locked = false;
+      matchedPairs = [];
       attemptsSpan.textContent = "0";
       matchesSpan.textContent = "0";
       setMessage("");
+      clearSolutionView();
     }
 
     function newSelection() {
@@ -331,6 +479,26 @@
 
     restartBtn.addEventListener("click", restartSameSelection);
     shuffleBtn.addEventListener("click", newSelection);
+    solutionBtn.addEventListener("click", toggleSolution);
+    window.addEventListener("resize", () => {
+      updateSolutionDisplay();
+    });
+
+    window.render_game_to_text = () => JSON.stringify({
+      mode: "matching",
+      attempts,
+      matches,
+      total: currentPairs.length,
+      solutionVisible,
+      matchedPairs,
+      selectedLeft: selectedLeft ? selectedLeft.dataset.value : null,
+      selectedRight: selectedRight ? selectedRight.dataset.value : null,
+      currentPairs
+    });
+
+    window.advanceTime = () => {
+      updateSolutionDisplay();
+    };
 
     newSelection();
   </script>
